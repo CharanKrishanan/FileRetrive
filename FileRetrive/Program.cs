@@ -34,12 +34,13 @@ namespace FileRetrive
                     fs.Close();
                     fs.Dispose();
                 }
-                Console.ReadLine();
+                
             }
             else
             {
                 Console.WriteLine("file does not exist");
             }
+            Console.ReadLine();
 
         }
     }
