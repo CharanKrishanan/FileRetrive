@@ -11,16 +11,35 @@ namespace FileRetrive
     {
         static void Main(string[] args)
         {
-
-            FileStream fs = new FileStream("C:\\Users\\Dell\\Documents\\Practice\\.NET\\FileRetrive\\Students_Data.txt", FileMode.Open,FileAccess.Read);
-            StreamReader sr = new StreamReader(fs);
-            String data=sr.ReadToEnd();
-            Console.WriteLine(data);
-            sr.Close();
-            sr.Dispose();
-            fs.Close();
-            fs.Dispose();
-            Console.ReadLine();
+            bool ans = File.Exists(@"C:\\Users\\Dell\\Documents\\Practice\\.NET\\FileRetrive\\Students_Data.txt");
+            if (ans)
+            {
+                FileStream fs = null;
+                StreamReader sr= null;
+                try
+                {
+                     fs = new FileStream("C:\\Users\\Dell\\Documents\\Practice\\.NET\\FileRetrive\\Students_Data.txt", FileMode.Open, FileAccess.Read);
+                     sr = new StreamReader(fs);
+                    String data = sr.ReadToEnd();
+                    Console.WriteLine(data);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+                finally
+                {
+                    sr.Close();
+                    sr.Dispose();
+                    fs.Close();
+                    fs.Dispose();
+                }
+                Console.ReadLine();
+            }
+            else
+            {
+                Console.WriteLine("file does not exist");
+            }
 
         }
     }
